@@ -1,5 +1,9 @@
 # A sample gRPC server #
 
+## Overview ##
+
+This server exposes a GetMatches function and returns a contrived set of data.
+
 ## Installation ##
 
     git clone git@github.com:ryanisnan/grpc-python-testserver.git
