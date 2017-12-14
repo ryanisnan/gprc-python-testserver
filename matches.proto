@@ -1,3 +1,6 @@
+syntax = "proto3";
+
+// Basic mesage types that this service understands.
 message ScaleScore {
     int32 scale_id = 1;
     float score = 2;
@@ -16,6 +19,7 @@ message CareerMatchesResponse {
     repeated CareerMatch matches = 1;
 }
 
+// Interface exposed by the service.
 service CareerMatchesService {
-    rpc GetMatches (CareerMatchesRequest) returns (CareerMatchesResponse);
+    rpc GetMatches (CareerMatchesRequest) returns (CareerMatchesResponse) {};
 }
