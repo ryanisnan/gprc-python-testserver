@@ -1,11 +1,18 @@
 # Library imports
 from concurrent import futures
 import grpc
+import logging
+import time
 
 # Local imports
 from matches_pb2 import CareerMatch
 from matches_pb2 import CareerMatchesResponse
 import matches_pb2_grpc
+
+
+# Logging config
+logging.basicConfig(level='DEBUG')
+logger = logging.getLogger(__name__)
 
 
 class CareerMatchesServiceServicer(matches_pb2_grpc.CareerMatchesServiceServicer):
@@ -23,10 +30,19 @@ class CareerMatchesServiceServicer(matches_pb2_grpc.CareerMatchesServiceServicer
 
 
 def serve():
+    logger.info('serve() running')
     server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
     matches_pb2_grpc.add_CareerMatchesServiceServicer_to_server(CareerMatchesServiceServicer(), server)
     server.add_insecure_port('[::]:50051')
     server.start()
+
+    # Hang while we serve
+    try:
+        while True:
+            time.sleep(60 * 60 * 24)
+    except KeyboardInterrupt:
+        logger.info('serve() interrupted by keyboard input')
+        server.stop(0)
 
 
 if __name__ == '__main__':
