@@ -5,11 +5,10 @@ import grpc
 # Local imports
 from matches_pb2 import CareerMatch
 from matches_pb2 import CareerMatchesResponse
-from matches_pb2_grpc import CareerMatchesServiceStub
-from matches_pb2_grpc import add_CareerMatchesServiceServicer_to_server
+import matches_pb2_grpc
 
 
-class CareerMatchesServicer(CareerMatchesServiceStub):
+class CareerMatchesServiceServicer(matches_pb2_grpc.CareerMatchesServiceServicer):
     """
     Implementation of the service in python.
     """
@@ -25,7 +24,7 @@ class CareerMatchesServicer(CareerMatchesServiceStub):
 
 def serve():
     server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
-    add_CareerMatchesServiceServicer_to_server(CareerMatchesServicer(), server)
+    matches_pb2_grpc.add_CareerMatchesServiceServicer_to_server(CareerMatchesServiceServicer(), server)
     server.add_insecure_port('[::]:50051')
     server.start()
 
