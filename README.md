@@ -1,5 +1,13 @@
-# Careers Matching Service - A test run #
+# A sample gRPC server #
 
-## Goals ##
-1. To stand up a quick pseudo matching service that takes a given set of inputs and returns a set of fake career recommendations. For simplification, the algorithm used to compute the recommendations will be contrived and rudimentary in its scope.
-2. To communicate with a consumer via gRPC.
+## Installation ##
+
+    git clone git@github.com:ryanisnan/grpc-python-testserver.git
+    cd grpc-python-testserver
+    virtualenv venv
+    source venv/bin/activate
+    pip install -r requirements.txt
+
+## Run the server ##
+
+    python server.py
