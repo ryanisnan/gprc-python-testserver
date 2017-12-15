@@ -19,7 +19,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   name='matches.proto',
   package='',
   syntax='proto3',
-  serialized_pb=_b('\n\rmatches.proto\"-\n\nScaleScore\x12\x10\n\x08scale_id\x18\x01 \x01(\x05\x12\r\n\x05score\x18\x02 \x01(\x02\"/\n\x0b\x43\x61reerMatch\x12\x11\n\tcareer_id\x18\x01 \x01(\x05\x12\r\n\x05score\x18\x02 \x01(\x02\"9\n\x14\x43\x61reerMatchesRequest\x12!\n\x0cscale_scores\x18\x01 \x03(\x0b\x32\x0b.ScaleScore\"6\n\x15\x43\x61reerMatchesResponse\x12\x1d\n\x07matches\x18\x01 \x03(\x0b\x32\x0c.CareerMatch2U\n\x14\x43\x61reerMatchesService\x12=\n\nGetMatches\x12\x15.CareerMatchesRequest\x1a\x16.CareerMatchesResponse\"\x00\x62\x06proto3')
+  serialized_pb=_b('\n\rmatches.proto\"-\n\nScaleScore\x12\x10\n\x08scale_id\x18\x01 \x01(\x05\x12\r\n\x05score\x18\x02 \x01(\x02\"8\n\x13\x43\x61reerHistoryRating\x12\x11\n\tcareer_id\x18\x01 \x01(\x05\x12\x0e\n\x06rating\x18\x02 \x01(\x02\"/\n\x0b\x43\x61reerMatch\x12\x11\n\tcareer_id\x18\x01 \x01(\x05\x12\r\n\x05score\x18\x02 \x01(\x02\"o\n\x14\x43\x61reerMatchesRequest\x12!\n\x0cscale_scores\x18\x01 \x03(\x0b\x32\x0b.ScaleScore\x12\x34\n\x16\x63\x61reer_history_ratings\x18\x02 \x03(\x0b\x32\x14.CareerHistoryRating\"6\n\x15\x43\x61reerMatchesResponse\x12\x1d\n\x07matches\x18\x01 \x03(\x0b\x32\x0c.CareerMatch2U\n\x14\x43\x61reerMatchesService\x12=\n\nGetMatches\x12\x15.CareerMatchesRequest\x1a\x16.CareerMatchesResponse\"\x00\x62\x06proto3')
 )
 
 
@@ -63,6 +63,44 @@ _SCALESCORE = _descriptor.Descriptor(
 )
 
 
+_CAREERHISTORYRATING = _descriptor.Descriptor(
+  name='CareerHistoryRating',
+  full_name='CareerHistoryRating',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='career_id', full_name='CareerHistoryRating.career_id', index=0,
+      number=1, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='rating', full_name='CareerHistoryRating.rating', index=1,
+      number=2, type=2, cpp_type=6, label=1,
+      has_default_value=False, default_value=float(0),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=64,
+  serialized_end=120,
+)
+
+
 _CAREERMATCH = _descriptor.Descriptor(
   name='CareerMatch',
   full_name='CareerMatch',
@@ -96,8 +134,8 @@ _CAREERMATCH = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=64,
-  serialized_end=111,
+  serialized_start=122,
+  serialized_end=169,
 )
 
 
@@ -115,6 +153,13 @@ _CAREERMATCHESREQUEST = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
+    _descriptor.FieldDescriptor(
+      name='career_history_ratings', full_name='CareerMatchesRequest.career_history_ratings', index=1,
+      number=2, type=11, cpp_type=10, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
   ],
   extensions=[
   ],
@@ -127,8 +172,8 @@ _CAREERMATCHESREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=113,
-  serialized_end=170,
+  serialized_start=171,
+  serialized_end=282,
 )
 
 
@@ -158,13 +203,15 @@ _CAREERMATCHESRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=172,
-  serialized_end=226,
+  serialized_start=284,
+  serialized_end=338,
 )
 
 _CAREERMATCHESREQUEST.fields_by_name['scale_scores'].message_type = _SCALESCORE
+_CAREERMATCHESREQUEST.fields_by_name['career_history_ratings'].message_type = _CAREERHISTORYRATING
 _CAREERMATCHESRESPONSE.fields_by_name['matches'].message_type = _CAREERMATCH
 DESCRIPTOR.message_types_by_name['ScaleScore'] = _SCALESCORE
+DESCRIPTOR.message_types_by_name['CareerHistoryRating'] = _CAREERHISTORYRATING
 DESCRIPTOR.message_types_by_name['CareerMatch'] = _CAREERMATCH
 DESCRIPTOR.message_types_by_name['CareerMatchesRequest'] = _CAREERMATCHESREQUEST
 DESCRIPTOR.message_types_by_name['CareerMatchesResponse'] = _CAREERMATCHESRESPONSE
@@ -176,6 +223,13 @@ ScaleScore = _reflection.GeneratedProtocolMessageType('ScaleScore', (_message.Me
   # @@protoc_insertion_point(class_scope:ScaleScore)
   ))
 _sym_db.RegisterMessage(ScaleScore)
+
+CareerHistoryRating = _reflection.GeneratedProtocolMessageType('CareerHistoryRating', (_message.Message,), dict(
+  DESCRIPTOR = _CAREERHISTORYRATING,
+  __module__ = 'matches_pb2'
+  # @@protoc_insertion_point(class_scope:CareerHistoryRating)
+  ))
+_sym_db.RegisterMessage(CareerHistoryRating)
 
 CareerMatch = _reflection.GeneratedProtocolMessageType('CareerMatch', (_message.Message,), dict(
   DESCRIPTOR = _CAREERMATCH,
@@ -206,8 +260,8 @@ _CAREERMATCHESSERVICE = _descriptor.ServiceDescriptor(
   file=DESCRIPTOR,
   index=0,
   options=None,
-  serialized_start=228,
-  serialized_end=313,
+  serialized_start=340,
+  serialized_end=425,
   methods=[
   _descriptor.MethodDescriptor(
     name='GetMatches',

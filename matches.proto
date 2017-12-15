@@ -6,6 +6,11 @@ message ScaleScore {
     float score = 2;
 }
 
+message CareerHistoryRating {
+    int32 career_id = 1;
+    float rating = 2;
+}
+
 message CareerMatch {
     int32 career_id = 1;
     float score = 2;
@@ -13,6 +18,7 @@ message CareerMatch {
 
 message CareerMatchesRequest {
     repeated ScaleScore scale_scores = 1;
+    repeated CareerHistoryRating career_history_ratings = 2;
 }
 
 message CareerMatchesResponse {
